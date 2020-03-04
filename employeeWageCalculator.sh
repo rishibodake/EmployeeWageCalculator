@@ -9,6 +9,9 @@ workHours=0
 fullTimeHour=8
 partTimeHour=4
 daysOfMonth=20
+totalHourWorked=0
+monthlySalary=0
+day=1
 
 function attendence(){
 	randomGenrator=$((RANDOM%2))
@@ -23,29 +26,41 @@ function attendence(){
 	fi
 }
 function dailyWage(){
+
 	dailySalary=$(($wagePerHour*$workHours))
-	echo $dailySalary
+	echo todays salary is: $dailySalary
+	monthlyWage
+}
 }
 function checkPartTime(){
 	caseChecker=$((RANDOM%2))
 	case $caseChecker in
 		0)
 			echo Employee is PartTime
-			workHours=$partTimeHour
+			getWorkHours $partTimeHour
 			dailyWage
 			;;
 		1)
 			echo Employee is FullTime
-			workHours=$fullTimeHour
+			getWorkHours $fullTimeHour
 			dailyWage
 			;;
 	esac
 }
 function wagesForMonth(){
-	for (( day=1; day<=$daysOfMonth; day++))
+	while [[ $day -le $daysOfMonth && $totalHourWorked -le 100 ]]
 	do
 		echo Day $day
 		attendence
+		((day++))
 	done
 }
+function getWorkHours(){
+	
+	workHours=$1
+   totalHourWorked=$(($totalHourWorked+$workHours))
+	echo Total Hours Worked Till Today: $totalHourWorked
+}
 wagesForMonth
+
+
