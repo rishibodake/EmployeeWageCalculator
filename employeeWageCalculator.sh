@@ -2,6 +2,8 @@
 #Discription:calculate the wages of employee using use cases
 #Author:Hrishikesh M Bodake
 #Since:March 4 2020 /Wednesday
+#variables
+declare -A wages
 isPresent=1
 ispartTime=1
 wagePerHour=20
@@ -22,18 +24,23 @@ function attendence(){
 		echo
 	else
 		echo Employee is Absent
+		storeInDict 0
 		echo
 	fi
 }
 function dailyWage(){
 
 	dailySalary=$(($wagePerHour*$workHours))
+#	wages[$day]=$dailySalary
+	storeInDict $dailySalary
 	echo todays salary is: $dailySalary
 	monthlyWage
+#	storeIntoDictionary
 }
 function monthlyWage(){
    monthlySalary=$(($monthlySalary+$dailySalary))
       echo Monthly Salary: $monthlySalary
+		echo =======================================
 }
 function checkPartTime(){
 	caseChecker=$((RANDOM%2))
@@ -53,7 +60,7 @@ function checkPartTime(){
 function wagesForMonth(){
 	while [[ $day -le $daysOfMonth && $totalHourWorked -le 100 ]]
 	do
-		echo Day $day
+		echo ============== Day $day ===================
 		attendence
 		((day++))
 	done
@@ -63,4 +70,11 @@ function getWorkHours(){
    totalHourWorked=$(($totalHourWorked+$workHours))
 	echo Total Hours Worked Till Today: $totalHourWorked
 }
+function storeInDict()
+{
+	wages[$day]=$1
+}
 wagesForMonth
+echo ${!wages[@]}
+echo ${wages[@]}
+
