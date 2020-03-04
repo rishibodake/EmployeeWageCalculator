@@ -24,15 +24,18 @@ function dailyWage(){
 	echo $dailySalary
 }
 function checkPartTime(){
-	if [[ $((RANDOM%2)) -eq $ispartTime ]]
-	then
-		echo Employee is PartTime
-		workHours=$partTimeHour
-		dailyWage
-	else
-		echo Employee is FullTime
-		workHours=$fullTimeHour
-		dailyWage
-	fi
+	caseChecker=$((RANDOM%2))
+	case $caseChecker in
+		0)
+			echo Employee is PartTime
+			workHours=$partTimeHour
+			dailyWage
+			;;
+		1)
+			echo Employee is FullTime
+			workHours=$fullTimeHour
+			dailyWage
+			;;
+	esac
 }
 attendence
