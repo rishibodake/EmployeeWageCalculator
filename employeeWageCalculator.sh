@@ -59,11 +59,8 @@ function wagesForMonth(){
 	done
 }
 function getWorkHours(){
-	
 	workHours=$1
    totalHourWorked=$(($totalHourWorked+$workHours))
 	echo Total Hours Worked Till Today: $totalHourWorked
 }
 wagesForMonth
-
-
