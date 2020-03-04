@@ -31,6 +31,9 @@ function dailyWage(){
 	echo todays salary is: $dailySalary
 	monthlyWage
 }
+function monthlyWage(){
+   monthlySalary=$(($monthlySalary+$dailySalary))
+      echo Monthly Salary: $monthlySalary
 }
 function checkPartTime(){
 	caseChecker=$((RANDOM%2))
