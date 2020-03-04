@@ -8,6 +8,7 @@ wagePerHour=20
 workHours=0
 fullTimeHour=8
 partTimeHour=4
+daysOfMonth=20
 
 function attendence(){
 	randomGenrator=$((RANDOM%2))
@@ -15,8 +16,10 @@ function attendence(){
 	then
 		echo Employee is Present
 		checkPartTime
+		echo
 	else
 		echo Employee is Absent
+		echo
 	fi
 }
 function dailyWage(){
@@ -38,4 +41,11 @@ function checkPartTime(){
 			;;
 	esac
 }
-attendence
+function wagesForMonth(){
+	for (( day=1; day<=$daysOfMonth; day++))
+	do
+		echo Day $day
+		attendence
+	done
+}
+wagesForMonth
